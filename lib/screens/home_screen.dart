@@ -10,7 +10,6 @@ class HomeScreen extends StatelessWidget {
 
   void _resetBackendUrl(BuildContext context) {
     // You can put any other code needed for resetting the backend URL here.
-    print("Resetting Backend URL...");
   }
 
   @override
