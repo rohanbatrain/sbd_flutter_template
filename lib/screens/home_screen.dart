@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'menu.dart'; // Import the menu widget
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -55,27 +56,13 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Home'),
         actions: [
-          PopupMenuButton<String>(
-            icon: CircleAvatar(
-              child: Icon(Icons.person),
-            ),
-            onSelected: (String result) {
-              if (result == 'logout') {
-                Navigator.pushNamed(context, '/logout');
-              } else if (result == 'reset_backend_url') {
-                _showResetBackendUrlConfirmationDialog(context);
-              }
+          Menu(
+            onLogout: () {
+              Navigator.pushNamed(context, '/logout');
             },
-            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-              const PopupMenuItem<String>(
-                value: 'logout',
-                child: Text('Logout'),
-              ),
-              const PopupMenuItem<String>(
-                value: 'reset_backend_url',
-                child: Text('Reset Backend URL'),
-              ),
-            ],
+            onResetBackendUrl: () {
+              _showResetBackendUrlConfirmationDialog(context);
+            },
           ),
         ],
       ),
